@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LoyalBooks_InterviewTest</string>
+    <string name="loadMsg">Reading....</string>
 </resources>

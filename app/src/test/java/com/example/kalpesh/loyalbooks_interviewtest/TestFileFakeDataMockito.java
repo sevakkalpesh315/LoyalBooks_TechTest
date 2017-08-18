@@ -19,7 +19,8 @@ public class TestFileFakeDataMockito {
 	FileParser getFile;
 	
 	String[] splitWords;
-	
+	Controller controller;
+
 	/**
 	 * Setting up before each test, to remove duplicate code.
 	 */
@@ -29,8 +30,10 @@ public class TestFileFakeDataMockito {
 //		getFile = new GetFile();
 		
 		getFile = mock(FileParser.class);
+		controller= new Controller();
+
 		when(getFile.readWords(null)).thenReturn(new String[]{"the","Car","the", "and", "and", "and","out", "test"});
-		
+
 		splitWords = getFile.readWords(null);
 		
 	}
@@ -57,7 +60,7 @@ public class TestFileFakeDataMockito {
 	 */
 	@Test
     public void CountingWords() {		
-		Map<String, Integer> occurrences = Controller.getOccurrences(splitWords);
+		Map<String, Integer> occurrences = controller.getOccurrences(splitWords);
 		
 		Assert.assertEquals(5, occurrences.size());
     }
@@ -67,7 +70,7 @@ public class TestFileFakeDataMockito {
 	@Test
     public void gettingCorrectCountedWords() {
 				
-		Map<String, Integer> occurrences = Controller.getOccurrences(splitWords);
+		Map<String, Integer> occurrences = controller.getOccurrences(splitWords);
 		
 		Assert.assertEquals(5, occurrences.size());
 		
@@ -77,9 +80,5 @@ public class TestFileFakeDataMockito {
 		Assert.assertEquals(1, occurrences.get("test").intValue());
 		Assert.assertEquals(1, occurrences.get("out").intValue());
     }
-	
-	
-	
-
 
 }

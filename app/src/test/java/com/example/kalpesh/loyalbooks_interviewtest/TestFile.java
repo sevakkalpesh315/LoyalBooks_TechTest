@@ -15,7 +15,7 @@ public class TestFile {
 	
 	FileParser getFile;
 	String[] splitWords;
-	
+	Controller controller;
 	/**
 	 * Setting up before each test, to remove duplicate code.
 	 */
@@ -23,7 +23,7 @@ public class TestFile {
 	public void setup(){
 		getFile = new FileParser();
 		splitWords = getFile.readWords("Railway-Children-by-E-Nesbit.txt");
-		
+		controller= new Controller();
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class TestFile {
 	 */
 	@Test
     public void CountingWords() {		
-		Map<String, Integer> occurrences = Controller.getOccurrences(splitWords);
+		Map<String, Integer> occurrences = controller.getOccurrences(splitWords);
 		
 		Assert.assertEquals(4705, occurrences.size());
     }
@@ -58,7 +58,7 @@ public class TestFile {
 	@Test
     public void gettingCorrectCountedWords() {
 				
-		Map<String, Integer> occurrences = Controller.getOccurrences(splitWords);
+		Map<String, Integer> occurrences = controller.getOccurrences(splitWords);
 		
 		Assert.assertEquals(4705, occurrences.size());
 		

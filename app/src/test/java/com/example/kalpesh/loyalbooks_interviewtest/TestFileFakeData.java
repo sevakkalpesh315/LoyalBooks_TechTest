@@ -14,14 +14,16 @@ import java.util.Map;
 public class TestFileFakeData {
 	
 	String[] splitWords;
-	
+	Controller controller;
+
 	/**
 	 * Setting up before each test, to remove duplicate code.
 	 */
 	@Before
 	public void setup(){
 		splitWords = new String[]{"the","Car","the", "and", "and", "and","out", "test"};
-		
+		controller= new Controller();
+
 	}
 	
 	/**
@@ -46,7 +48,7 @@ public class TestFileFakeData {
 	 */
 	@Test
     public void CountingWords() {		
-		Map<String, Integer> occurrences = Controller.getOccurrences(splitWords);
+		Map<String, Integer> occurrences = controller.getOccurrences(splitWords);
 		
 		Assert.assertEquals(5, occurrences.size());
     }
@@ -56,7 +58,7 @@ public class TestFileFakeData {
 	@Test
     public void gettingCorrectCountedWords() {
 				
-		Map<String, Integer> occurrences = Controller.getOccurrences(splitWords);
+		Map<String, Integer> occurrences = controller.getOccurrences(splitWords);
 		
 		Assert.assertEquals(5, occurrences.size());
 		

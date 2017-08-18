@@ -25,13 +25,15 @@ public class TestMethods {
 	Map<String, Integer> occurrences;
 	ArrayList<String> resultsTrue;
 	ArrayList<String> resultsFalse;
-	
+	Controller controller;
+
 	/**
 	 * Setting up for getting PrintStream and
 	 * added values for results for correct and incorrect values
 	 */
 	@Before
 	public void setUp() {
+		controller= new Controller();
 		System.setOut(new PrintStream(outContent));
 		System.setErr(new PrintStream(errContent));
 		occurrences =new HashMap<String, Integer>();
@@ -88,12 +90,12 @@ public class TestMethods {
 	 */
 	@Test
 	public void isPrimeFunctionWorking() {
-		Assert.assertEquals(true, Controller.isPrime(2));
-		Assert.assertEquals(true, Controller.isPrime(3));
-		Assert.assertEquals(true, Controller.isPrime(7));
-		Assert.assertEquals(true, Controller.isPrime(11));
-		Assert.assertEquals(false, Controller.isPrime(12));
-		Assert.assertEquals(false, Controller.isPrime(15));
+		Assert.assertEquals(true, controller.isPrime(2));
+		Assert.assertEquals(true, controller.isPrime(3));
+		Assert.assertEquals(true, controller.isPrime(7));
+		Assert.assertEquals(true, controller.isPrime(11));
+		Assert.assertEquals(false, controller.isPrime(12));
+		Assert.assertEquals(false, controller.isPrime(15));
 	}
 	
 	/**
@@ -101,7 +103,7 @@ public class TestMethods {
 	 */
 	@Test
 	public void gettingCorrectCountedPrintedWordsOne() {
-		Controller.printOccurrences(occurrences);
+		controller.printOccurrences(occurrences);
 		assertTrue(outContent.toString().contains("the : 3366 Prime? : false"));
 	}
 	
@@ -110,7 +112,7 @@ public class TestMethods {
 	 */
 	@Test
 	public void gettingCorrectCountedPrintedWordsLoop() {
-		Controller.printOccurrences(occurrences);
+		controller.printOccurrences(occurrences);
 		for(String value:resultsTrue){
 			assertTrue("Does not contain: " + value ,outContent.toString().contains(value));
 		}
@@ -121,7 +123,7 @@ public class TestMethods {
 	 */
 	@Test
 	public void gettingIncorrectCountedPrintedWordsLoop() {
-		Controller.printOccurrences(occurrences);
+		controller.printOccurrences(occurrences);
 		for(String value:resultsFalse){
 			assertFalse("Does contain: " + value ,outContent.toString().contains(value));
 		}
